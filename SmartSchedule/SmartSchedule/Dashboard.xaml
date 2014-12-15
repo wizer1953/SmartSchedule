@@ -1,0 +1,121 @@
+﻿<Page
+    x:Name="pageRoot"
+    x:Class="SmartSchedule.Dashboard"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SmartSchedule"
+    xmlns:common="using:SmartSchedule.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
+        <x:String x:Key="AppName">My Application</x:String>
+        <ControlTemplate x:Key="ButtonControlTemplate1" TargetType="Button">
+            <Grid x:Name="grid" Background="Black">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualStateGroup.Transitions>
+                            <VisualTransition GeneratedDuration="0" To="PointerOver">
+                                <Storyboard>
+                                    <ColorAnimation Duration="0:0:1" To="#FF8F2727" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="grid" d:IsOptimized="True"/>
+                                </Storyboard>
+                            </VisualTransition>
+                        </VisualStateGroup.Transitions>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <Path x:Name="Shape_1" Data="F1M133.66,69.736C133.66,69.736 170.323,69.736 170.323,69.736 170.323,69.736 170.323,133.669 170.323,133.669 170.323,133.669 234.239,133.669 234.239,133.669 234.239,133.669 234.239,170.332 234.239,170.332 234.239,170.332 170.323,170.332 170.323,170.332 170.323,170.332 170.323,234.265 170.323,234.265 170.323,234.265 133.66,234.265 133.66,234.265 133.66,234.265 133.66,170.332 133.66,170.332 133.66,170.332 69.727,170.332 69.727,170.332 69.727,170.332 69.727,133.669 69.727,133.669 69.727,133.669 133.66,133.669 133.66,133.669 133.66,133.669 133.66,69.736 133.66,69.736z M151.991,15.742C76.857,15.742 15.733,76.866 15.733,152 15.733,227.135 76.857,288.259 151.991,288.259 227.135,288.259 288.267,227.135 288.267,152 288.267,76.866 227.135,15.742 151.991,15.742z M151.991,1.98C234.72,1.98 302.028,69.279 302.028,152 302.028,234.721 234.72,302.02 151.991,302.02 69.27,302.02 1.972,234.721 1.972,152 1.972,69.279 69.27,1.98 151.991,1.98z" Fill="White" Height="304" Canvas.Left="-2" Stretch="None" Canvas.Top="-2" Width="304"/>
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="PlusButton" TargetType="Button">
+            <Grid x:Name="grid" Margin="0,0,-10,-14" RenderTransformOrigin="0.5,0.5" Background="Black">
+                <Grid.RenderTransform>
+                    <CompositeTransform/>
+                </Grid.RenderTransform>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal"/>
+                        <VisualState x:Name="Pressed"/>
+                        <VisualState x:Name="Disabled"/>
+                        <VisualState x:Name="PointerOver"/>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <Path x:Name="Shape_1" Data="F1M45.887,24.579C45.887,24.579 58.108,24.579 58.108,24.579 58.108,24.579 58.108,45.89 58.108,45.89 58.108,45.89 79.413,45.89 79.413,45.89 79.413,45.89 79.413,58.111 79.413,58.111 79.413,58.111 58.108,58.111 58.108,58.111 58.108,58.111 58.108,79.422 58.108,79.422 58.108,79.422 45.887,79.422 45.887,79.422 45.887,79.422 45.887,58.111 45.887,58.111 45.887,58.111 24.576,58.111 24.576,58.111 24.576,58.111 24.576,45.89 24.576,45.89 24.576,45.89 45.887,45.89 45.887,45.89 45.887,45.89 45.887,24.579 45.887,24.579z M51.997,6.581C26.952,6.581 6.578,26.955 6.578,52 6.578,77.045 26.952,97.42 51.997,97.42 77.045,97.42 97.422,77.045 97.422,52 97.422,26.955 77.045,6.581 51.997,6.581z M51.997,1.993C79.573,1.993 102.009,24.426 102.009,52 102.009,79.574 79.573,102.007 51.997,102.007 24.423,102.007 1.991,79.574 1.991,52 1.991,24.426 24.423,1.993 51.997,1.993z" Fill="White" Height="104" Canvas.Left="-2" Stretch="None" Canvas.Top="-2" Width="104"/>
+            </Grid>
+        </ControlTemplate>
+        <Style x:Key="ButtonPlus" TargetType="Button"/>
+    </Page.Resources>
+
+    <!--
+        This grid acts as a root panel for the page that defines two rows:
+        * Row 0 contains the back button and page title
+        * Row 1 contains the rest of the page layout
+    -->
+    <!--
+        This grid acts as a root panel for the page that defines two rows:
+        * Row 0 contains the back button and page title
+        * Row 1 contains the rest of the page layout
+    -->
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Back button and page title -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+                        Style="{StaticResource NavigationBackButtonNormalStyle}"
+                        VerticalAlignment="Top"
+                        AutomationProperties.Name="Back"
+                        AutomationProperties.AutomationId="BackButton"
+                        AutomationProperties.ItemType="Navigation Button"/>
+            <TextBlock x:Name="pageTitle" Text="Dashboard" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="608" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="672">
+
+            <Button x:Name="AddButton" Content="Button" HorizontalAlignment="Left" Height="60" Margin="295,538,0,0" Style="{StaticResource PlusButtonFinal}" VerticalAlignment="Top" Width="60" Tapped="AddButton_Tapped"/>
+            <SearchBox x:Name="CitySearchBox" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top" Width="287" Height="33" PlaceholderText="Search City" QueryChanged="CitySearchBox_QueryChanged"/>
+            <ListBox x:Name="CityListBox" HorizontalAlignment="Left" Height="92" Margin="10,248,0,0" VerticalAlignment="Top" Width="287" SelectionChanged="CityListBox_SelectionChanged"/>
+            <TextBox x:Name="EventName" HorizontalAlignment="Left" Height="26" Margin="27,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" PlaceholderText="Event Name"/>
+            <DatePicker x:Name="FromDate" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,105,0,0"/>
+            <TimePicker x:Name="FromTime" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="460,105,0,0"/>
+            <TimePicker x:Name="ToTime" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="460,162,0,0"/>
+            <DatePicker x:Name="ToDate" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,162,0,0"/>
+            <TextBox x:Name="CompleteAddress" HorizontalAlignment="Left" Height="125" Margin="364,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="276" PlaceholderText="Complete Address"/>
+            <TextBox x:Name="EventDescription" HorizontalAlignment="Left" Height="126" Margin="10,363,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="630" PlaceholderText="Evenet Description"/>
+            <TextBlock HorizontalAlignment="Left" Height="32" Margin="10,105,0,0" TextWrapping="Wrap" Text="From :" VerticalAlignment="Top" Width="70" FontSize="21.333" TextAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Left" Height="32" Margin="10,162,0,0" TextWrapping="Wrap" Text="To:" VerticalAlignment="Top" Width="70" FontSize="21.333" TextAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Left" Height="43" Margin="191,10,0,0" TextWrapping="Wrap" Text="CREATE NEW EVENT" VerticalAlignment="Top" Width="291" FontSize="29.333" TextAlignment="Center"/>
+            <ComboBox x:Name="EventType" HorizontalAlignment="Left" Margin="364,54,0,0" VerticalAlignment="Top" Width="276" PlaceholderText="Event Type">
+                <x:String>Appointment</x:String>
+                <x:String>Anniversary</x:String>
+                <x:String>Meeting</x:String>
+                <x:String>Function / Party</x:String>
+                <x:String>Social Gathering</x:String>
+                <x:String>Re-Union</x:String>
+                <x:String>Movie Time</x:String>
+                <x:String>Vacation</x:String>
+            </ComboBox>
+            <Button x:Name="EndButton" Content="Button" HorizontalAlignment="Left" Height="60" Margin="378,538,0,0" Style="{StaticResource EndButton}" VerticalAlignment="Top" Width="60" Tapped="EndButton_Tapped"/>
+            <Button x:Name="CheckButton" Content="Button" HorizontalAlignment="Left" Height="60" Margin="216,538,0,0" Style="{StaticResource CheckButton}" VerticalAlignment="Top" Width="60" Tapped="CheckButton_Tapped"/>
+            <Button Content="Button" HorizontalAlignment="Left" Height="60" Margin="507.5,511.5,0,0" Style="{StaticResource SampleBTBTBT}" VerticalAlignment="Top" Width="60"/>
+
+        </Grid>
+        <Grid HorizontalAlignment="Right" Height="608" Grid.Row="1" VerticalAlignment="Bottom" Width="669" Margin="0,0,10,10"/>
+
+
+    </Grid>
+</Page>

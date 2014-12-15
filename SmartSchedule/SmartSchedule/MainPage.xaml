@@ -1,0 +1,17 @@
+﻿<Page
+    x:Class="SmartSchedule.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SmartSchedule"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button Content="View DashBoard" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click" Margin="648,30,0,0" Height="198" Width="514"/>
+        <Button x:Name="loadCityData_BT" Content="Load CityData" HorizontalAlignment="Left" Margin="648,250,0,0" VerticalAlignment="Top" Height="213" Width="514" Tapped="loadCityData_BT_Tapped"/>
+        <TextBox x:Name="ExceptionBox" HorizontalAlignment="Left" Margin="85,433,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="111" Width="466"/>
+        <Button x:Name="LoadEventData_BT" Content="Load Event Data" HorizontalAlignment="Left" Height="165" Margin="651,490,0,0" VerticalAlignment="Top" Width="488" Click="Button_Click_2" Tapped="LoadEventData_Tapped"/>
+
+    </Grid>
+</Page>
