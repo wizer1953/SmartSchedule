@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SmartSchedule.Classes;
 
 namespace SmartSchedule.Classes
 {
-    public class EventDataList
+    public class EventString
     {
-        public static List<EventData> getValue;
+        public static string JsonEventString = "";
     }
 }

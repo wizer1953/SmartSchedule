@@ -6,16 +6,25 @@ using System.Threading.Tasks;
 
 namespace SmartSchedule.Classes
 {
-    class EventData
+    public class EventData
     {
+        public string eventName { get; set; }
+        public string eventType { get; set; }
+        public DateTimeOffset ToDate { get; set; }
+        public TimeSpan ToTime { get; set; }
+        public string cityName { get; set; }
+        public string CompleteAddress { get; set; }
+        public string EventDescription { get; set; }
+       /*
         public string eventName;
         public string eventType;
-        public DateTimeOffset FromDate;
-        public DateTimeOffset ToDate;
-        public TimeSpan FromTime;
-        public TimeSpan ToTime;
+        public string FromDate;
+        public string ToDate;
+        public string FromTime;
+        public string ToTime;
         public string cityName;
         public string CompleteAddress;
         public string EventDescription;
+        * */
     }
 }

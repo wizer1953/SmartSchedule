@@ -31,9 +31,17 @@ namespace SmartSchedule
             this.Loaded += MainPage_Loaded;
         }
 
+        
+
         void MainPage_Loaded(object sender, RoutedEventArgs e)      
         {
-           // loadCityData();
+            initialize();
+        }
+
+        void initialize()
+        {
+            loadCityData();
+            loadEventData();
         }
 
         // # Loading CityData into City Class static data members
@@ -56,27 +64,33 @@ namespace SmartSchedule
                  string eventDataString = await Windows.Storage.FileIO.ReadTextAsync(eventDataFile);
                  EventDataList.getValue = JsonConvert.DeserializeObject<List<EventData>>(eventDataString);
 
+                 ExceptionBox.Text = EventDataList.getValue[0].cityName;
+
              }
-             catch (FileNotFoundException ex)
+             catch (Exception ex)
              {
                  FlagCounters.lastException = ex.Message;
                  FlagCounters.userEventFileAvailability = false;
-                 ExceptionBox.Text = ex.Message;
              }
          }
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+
+
+/***************EVENTS************************EVENTS**************EVENTS***********************/
+
+        private void LoadEventData_Tapped(object sender, TappedRoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Dashboard));
         }
 
-        private void loadCityData_BT_Tapped(object sender, TappedRoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            loadCityData();
+            this.Frame.Navigate(typeof(AddEvent));
         }
 
-        private void LoadEventData_Tapped(object sender, TappedRoutedEventArgs e)
+        private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            loadEventData();
+            
         }
 
 

@@ -127,52 +127,49 @@
 				</Setter.Value>
 			</Setter>
 		</Style>
-		<Style x:Key="CheckButton" TargetType="Button">
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="Button">
-						<Canvas x:Name="CheckButton" UseLayoutRounding="False" RenderTransformOrigin="0.5,0.5">
-							<Canvas.RenderTransform>
-								<CompositeTransform/>
-							</Canvas.RenderTransform>
-							<Canvas.Clip>
-								<RectangleGeometry Rect="0,0,60,60"/>
-							</Canvas.Clip>
-							<VisualStateManager.VisualStateGroups>
-								<VisualStateGroup x:Name="CommonStates">
-									<VisualState x:Name="Normal"/>
-									<VisualState x:Name="Pressed">
-										<Storyboard>
-											<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="CheckButton">
-												<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-												<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.8"/>
-											</DoubleAnimationUsingKeyFrames>
-											<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="CheckButton">
-												<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-												<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.8"/>
-											</DoubleAnimationUsingKeyFrames>
-										</Storyboard>
-									</VisualState>
-									<VisualState x:Name="Disabled"/>
-									<VisualState x:Name="PointerOver">
-										<Storyboard>
-											<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Ellipse_1">
-												<EasingColorKeyFrame KeyTime="0" Value="#FF61EE5A"/>
-												<EasingColorKeyFrame KeyTime="0:0:0.1" Value="#FFA0E29D"/>
-											</ColorAnimationUsingKeyFrames>
-										</Storyboard>
-									</VisualState>
-								</VisualStateGroup>
-							</VisualStateManager.VisualStateGroups>
-							<Path x:Name="Ellipse_1" Data="F1M31,1C47.569,1 61,14.431 61,31 61,47.569 47.569,61 31,61 14.431,61 1,47.569 1,31 1,14.431 14.431,1 31,1z" Fill="#FF61EE5A" Height="62" Canvas.Left="-1" Stretch="None" Canvas.Top="-1" Width="62"/>
-							<Image x:Name="Shape_1" Height="64" Canvas.Left="-2" Source="CheckButton_Images/Shape 1.png" Canvas.Top="-2" Width="64"/>
-							<Path x:Name="Shape_2" Data="F1M11.788,17.13C11.788,17.13 16.534,26.565 16.534,26.565 16.534,26.565 24.246,7.391 36.407,1 36.11,5.565 34.924,9.522 37,14.391 31.661,15.609 20.686,29.304 17.127,36 12.085,29.609 6.153,24.739 2,23.217 2,23.217 11.788,17.13 11.788,17.13z" Fill="White" Height="37" Canvas.Left="11" Stretch="None" Canvas.Top="12" Width="39"/>
-						</Canvas>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-		<Style x:Key="SampleBTBTBT" TargetType="Button">
+        <Style TargetType="Button" x:Key="CheckButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Canvas x:Name="CheckButton" UseLayoutRounding="False" RenderTransformOrigin="0.5,0.5">
+                            <Canvas.RenderTransform>
+                                <CompositeTransform/>
+                            </Canvas.RenderTransform>
+                            <Canvas.Clip>
+                                <RectangleGeometry Rect="0,0,200,200"/>
+                            </Canvas.Clip>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="CheckButton">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.85"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="CheckButton">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.85"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled"/>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FFDAB2B2" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="ellipse" d:IsOptimized="True"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Ellipse x:Name="ellipse" Height="100" Width="100" Fill="#FF7A7272" Opacity="0.2"/>
+                            <Path x:Name="Shape_3" Width="100" UseLayoutRounding="False" Canvas.Top="-1" Stretch="None" Canvas.Left="-1" Height="100" Fill="White" Data="M50,4.45545 C24.8866,4.45545 4.45545,24.8866 4.45545,50 C4.45545,75.1134 24.8866,95.5446 50,95.5446 C75.1134,95.5446 95.5446,75.1134 95.5446,50 C95.5446,24.8866 75.1134,4.45545 50,4.45545 z M50,0.49505 C77.2975,0.49505 99.505,22.7025 99.505,50 C99.505,77.2975 77.2975,99.505 50,99.505 C22.7025,99.505 0.49505,77.2975 0.49505,50 C0.49505,22.7025 22.7025,0.49505 50,0.49505 z"/>
+                            <Path x:Name="Shape_2" Width="61.314" UseLayoutRounding="False" Canvas.Top="20" Stretch="None" Canvas.Left="20" Height="59" Fill="White" Data="M18.1662,27.2823 C18.1662,27.2823 25.8524,42.5621 25.8524,42.5621 C25.8524,42.5621 38.3431,11.5085 58.0386,1.15686 C57.5586,8.55037 55.637,14.9582 59,22.8457 C50.3525,24.817 32.5784,46.9987 26.8138,57.8431 C18.6475,47.4915 9.03973,39.6052 2.31373,37.1399 C2.31373,37.1399 18.1662,27.2823 18.1662,27.2823 z"/>
+                        </Canvas>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SampleBTBTBT" TargetType="Button">
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="Button">
@@ -204,6 +201,148 @@
 							</VisualStateManager.VisualStateGroups>
 							<Path x:Name="Ellipse_1" Data="F1M31,1C47.569,1 61,14.431 61,31 61,47.569 47.569,61 31,61 14.431,61 1,47.569 1,31 1,14.431 14.431,1 31,1z" Fill="#FF3372AD" Height="62" Canvas.Left="-1" Stretch="None" Canvas.Top="-1" Width="62"/>
 							<Path x:Name="Shape_1" Data="F1M28.332,15.547C28.332,15.547 35.665,15.547 35.665,15.547 35.665,15.547 35.665,28.334 35.665,28.334 35.665,28.334 48.448,28.334 48.448,28.334 48.448,28.334 48.448,35.666 48.448,35.666 48.448,35.666 35.665,35.666 35.665,35.666 35.665,35.666 35.665,48.453 35.665,48.453 35.665,48.453 28.332,48.453 28.332,48.453 28.332,48.453 28.332,35.666 28.332,35.666 28.332,35.666 15.545,35.666 15.545,35.666 15.545,35.666 15.545,28.334 15.545,28.334 15.545,28.334 28.332,28.334 28.332,28.334 28.332,28.334 28.332,15.547 28.332,15.547z M31.998,4.748C16.971,4.748 4.747,16.973 4.747,32 4.747,47.027 16.971,59.252 31.998,59.252 47.027,59.252 59.253,47.027 59.253,32 59.253,16.973 47.027,4.748 31.998,4.748z M31.998,1.996C48.544,1.996 62.006,15.456 62.006,32 62.006,48.544 48.544,62.004 31.998,62.004 15.454,62.004 1.994,48.544 1.994,32 1.994,15.456 15.454,1.996 31.998,1.996z" Fill="White" Height="64" Canvas.Left="-2" Stretch="None" Canvas.Top="-2" Width="64"/>
+						</Canvas>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="ContentPresenterStyle1" TargetType="ContentPresenter"/>
+		<Style x:Key="ViewButton1" TargetType="Button">
+			<Setter Property="FontFamily" Value="Elephant"/>
+			<Setter Property="FontSize" Value="59.99999"/>
+			<Setter Property="Foreground" Value="White"/>
+		</Style>
+		<Style x:Key="ViewButton" TargetType="Button">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Canvas x:Name="ViewButton" UseLayoutRounding="False" RenderTransformOrigin="0.5,0.5">
+							<Canvas.RenderTransform>
+								<CompositeTransform/>
+							</Canvas.RenderTransform>
+							<Canvas.Clip>
+								<RectangleGeometry Rect="0,0,101,101"/>
+							</Canvas.Clip>
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal"/>
+									<VisualState x:Name="Pressed">
+										<Storyboard>
+											<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="ViewButton">
+												<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+												<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.85"/>
+											</DoubleAnimationUsingKeyFrames>
+											<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="ViewButton">
+												<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+												<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.85"/>
+											</DoubleAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Disabled"/>
+									<VisualState x:Name="PointerOver">
+										<Storyboard>
+											<ColorAnimation Duration="0" To="#FFE4C8C8" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="ellipse" d:IsOptimized="True"/>
+										</Storyboard>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<Ellipse x:Name="ellipse" Height="100" Width="100" Canvas.Left="-1.363" Fill="#FF686060" Opacity="0.34"/>
+							<Path x:Name="Shape_1" Data="M50,4.45545 C24.8866,4.45545 4.45545,24.8866 4.45545,50 C4.45545,75.1134 24.8866,95.5446 50,95.5446 C75.1134,95.5446 95.5446,75.1134 95.5446,50 C95.5446,24.8866 75.1134,4.45545 50,4.45545 z M50,0.49505 C77.2975,0.49505 99.505,22.7025 99.505,50 C99.505,77.2975 77.2975,99.505 50,99.505 C22.7025,99.505 0.49505,77.2975 0.49505,50 C0.49505,22.7025 22.7025,0.49505 50,0.49505 z" Fill="White" Height="100" Canvas.Left="-1" Stretch="None" Canvas.Top="-1" Width="100" RenderTransformOrigin="0.5,0.5">
+								<Path.RenderTransform>
+									<CompositeTransform/>
+								</Path.RenderTransform>
+							</Path>
+							<ContentPresenter Height="27.9" Canvas.Left="22.5" Canvas.Top="31.5" Width="53.637"/>
+						</Canvas>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="FontSize" Value="24"/>
+		</Style>
+		<Style x:Key="DeleteButton" TargetType="Button">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Canvas x:Name="ViewButton" UseLayoutRounding="False" RenderTransformOrigin="0.5,0.5">
+							<Canvas.RenderTransform>
+								<CompositeTransform/>
+							</Canvas.RenderTransform>
+							<Canvas.Clip>
+								<RectangleGeometry Rect="0,0,101,101"/>
+							</Canvas.Clip>
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal"/>
+									<VisualState x:Name="Pressed">
+										<Storyboard>
+											<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="ViewButton">
+												<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+												<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.85"/>
+											</DoubleAnimationUsingKeyFrames>
+											<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="ViewButton">
+												<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+												<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.85"/>
+											</DoubleAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Disabled"/>
+									<VisualState x:Name="PointerOver">
+										<Storyboard>
+											<ColorAnimation Duration="0" To="#FFE4C8C8" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="ellipse" d:IsOptimized="True"/>
+										</Storyboard>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<Ellipse x:Name="ellipse" Height="100" Width="100" Canvas.Left="-1.363" Fill="#FF686060" Opacity="0.34"/>
+							<Path x:Name="Shape_1" Data="M50,4.45545 C24.8866,4.45545 4.45545,24.8866 4.45545,50 C4.45545,75.1134 24.8866,95.5446 50,95.5446 C75.1134,95.5446 95.5446,75.1134 95.5446,50 C95.5446,24.8866 75.1134,4.45545 50,4.45545 z M50,0.49505 C77.2975,0.49505 99.505,22.7025 99.505,50 C99.505,77.2975 77.2975,99.505 50,99.505 C22.7025,99.505 0.49505,77.2975 0.49505,50 C0.49505,22.7025 22.7025,0.49505 50,0.49505 z" Fill="White" Height="100" Canvas.Left="-1" Stretch="None" Canvas.Top="-1" Width="100" RenderTransformOrigin="0.5,0.5">
+								<Path.RenderTransform>
+									<CompositeTransform/>
+								</Path.RenderTransform>
+							</Path>
+							<TextBlock TextWrapping="Wrap" Text="Delete" FontSize="24" Canvas.Left="14" Canvas.Top="30"/>
+						</Canvas>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="FontSize" Value="24"/>
+		</Style>
+		<Style x:Key="CrossButton" TargetType="Button">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Canvas x:Name="CrossButton" UseLayoutRounding="False" RenderTransformOrigin="0.5,0.5">
+							<Canvas.RenderTransform>
+								<CompositeTransform/>
+							</Canvas.RenderTransform>
+							<Canvas.Clip>
+								<RectangleGeometry Rect="0,0,200,200"/>
+							</Canvas.Clip>
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal"/>
+									<VisualState x:Name="Pressed">
+										<Storyboard>
+											<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="CrossButton">
+												<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+												<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.85"/>
+											</DoubleAnimationUsingKeyFrames>
+											<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="CrossButton">
+												<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+												<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.85"/>
+											</DoubleAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Disabled"/>
+									<VisualState x:Name="PointerOver">
+										<Storyboard>
+											<ColorAnimation Duration="0" To="#FFDCC7C7" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="ellipse" d:IsOptimized="True"/>
+										</Storyboard>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<Ellipse x:Name="ellipse" Fill="#FF857E7E" Height="100" Width="100" Opacity="0.25"/>
+							<Path x:Name="Shape_2" Data="M50,4.45545 C24.8866,4.45545 4.45545,24.8866 4.45545,50 C4.45545,75.1134 24.8866,95.5446 50,95.5446 C75.1134,95.5446 95.5446,75.1134 95.5446,50 C95.5446,24.8866 75.1134,4.45545 50,4.45545 z M50,0.49505 C77.2975,0.49505 99.505,22.7025 99.505,50 C99.505,77.2975 77.2975,99.505 50,99.505 C22.7025,99.505 0.49505,77.2975 0.49505,50 C0.49505,22.7025 22.7025,0.49505 50,0.49505 z" Fill="White" Height="100" Canvas.Left="-1" Stretch="None" Canvas.Top="-1" Width="100"/>
+							<Path x:Name="Shape_3" Data="M55.6537,56.7803 C55.6537,56.7803 34.9503,56.7803 34.9503,56.7803 C34.9503,56.7803 28.2076,43.7902 28.2076,43.7902 C28.2076,43.7902 21.4649,56.7803 21.4649,56.7803 C21.4649,56.7803 1.11989,56.7803 1.11989,56.7803 C1.11989,56.7803 15.0817,28.9868 15.0817,28.9868 C15.0817,28.9868 1.74662,2.21974 1.74662,2.21974 C1.74662,2.21974 22.1818,2.21974 22.1818,2.21974 C22.1818,2.21974 28.7441,14.6977 28.7441,14.6977 C28.7441,14.6977 35.1284,2.21974 35.1284,2.21974 C35.1284,2.21974 55.116,2.21974 55.116,2.21974 C55.116,2.21974 41.6918,28.9868 41.6918,28.9868 C41.6918,28.9868 55.6537,56.7803 55.6537,56.7803 z" Fill="White" Height="59" Canvas.Left="22" Stretch="None" Canvas.Top="20" Width="56.774"/>
 						</Canvas>
 					</ControlTemplate>
 				</Setter.Value>

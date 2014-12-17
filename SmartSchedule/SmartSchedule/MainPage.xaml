@@ -7,11 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button Content="View DashBoard" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click" Margin="648,30,0,0" Height="198" Width="514"/>
-        <Button x:Name="loadCityData_BT" Content="Load CityData" HorizontalAlignment="Left" Margin="648,250,0,0" VerticalAlignment="Top" Height="213" Width="514" Tapped="loadCityData_BT_Tapped"/>
-        <TextBox x:Name="ExceptionBox" HorizontalAlignment="Left" Margin="85,433,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="111" Width="466"/>
-        <Button x:Name="LoadEventData_BT" Content="Load Event Data" HorizontalAlignment="Left" Height="165" Margin="651,490,0,0" VerticalAlignment="Top" Width="488" Click="Button_Click_2" Tapped="LoadEventData_Tapped"/>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="Assets/Images/rain.jpg"/>
+        </Grid.Background>
+        <Button Content="Add Event" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click" Margin="1171,698,0,0" Height="61" Width="164"/>
+        <Button x:Name="LoadEventData_BT" Content="DashBoard" HorizontalAlignment="Left" Height="63" Margin="1171,594,0,0" VerticalAlignment="Top" Width="164" Click="Button_Click_2" Tapped="LoadEventData_Tapped"/>
+        <Image Margin="0,0,746,468" Source="Assets/Images/SmartScheduleWide.png" Stretch="Fill"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,717,0,0" TextWrapping="Wrap" Text="Go to Dashboard and Start Planning Smartly" VerticalAlignment="Top" Height="41" Width="713" FontSize="36"/>
+        <TextBlock x:Name="ExceptionBox" HorizontalAlignment="Left" Margin="876,701,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="48" Width="219"/>
 
     </Grid>
 </Page>

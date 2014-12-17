@@ -103,6 +103,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AddEvent.xaml.cs">
+      <DependentUpon>AddEvent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -110,6 +113,7 @@
     <Compile Include="Classes\CityDataList.cs" />
     <Compile Include="Classes\EventData.cs" />
     <Compile Include="Classes\EventDataList.cs" />
+    <Compile Include="Classes\EventString.cs" />
     <Compile Include="Classes\FlagCounters.cs" />
     <Compile Include="Classes\NewEventData.cs" />
     <Compile Include="Common\NavigationHelper.cs" />
@@ -128,6 +132,17 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="Assets\Images\EventImg.png" />
+    <Content Include="Assets\WallPapers\WallPaperRed.jpg" />
+    <Content Include="Assets\WallPapers\WalpaperGrey.jpg" />
+    <Content Include="Assets\WallPapers\BlurredWallpaper.jpg" />
+    <Content Include="Assets\WallPapers\Forces_Of_Nature_Storm__21.jpg" />
+    <Content Include="Assets\WallPapers\MainPage1.jpg" />
+    <Content Include="Assets\Images\rain.jpg" />
+    <Content Include="Assets\Images\SmartScheduleWide.png" />
+    <Content Include="Assets\Images\SplashScreen\Splash620x300.png" />
+    <Content Include="Assets\Images\SplashScreen\Splash310x150.png" />
+    <Content Include="Assets\WallPapers\Wallpaper_ %2839%29.jpg" />
     <Content Include="Assets\JsonCityData.txt" />
     <None Include="packages.config" />
     <None Include="SmartSchedule_TemporaryKey.pfx" />
@@ -149,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AddEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

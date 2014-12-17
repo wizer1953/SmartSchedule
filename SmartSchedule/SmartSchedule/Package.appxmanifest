@@ -1,41 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-
-  <Identity Name="740891c6-3b6b-4858-a334-ea7959881929"
-            Publisher="CN=Vivek Gupta"
-            Version="1.0.0.0" />
-
+  <Identity Name="740891c6-3b6b-4858-a334-ea7959881929" Publisher="CN=Vivek Gupta" Version="1.0.0.0" />
   <Properties>
     <DisplayName>SmartSchedule</DisplayName>
     <PublisherDisplayName>Vivek Gupta</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
-
   <Prerequisites>
     <OSMinVersion>6.3.0</OSMinVersion>
     <OSMaxVersionTested>6.3.0</OSMaxVersionTested>
   </Prerequisites>
-
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-        Executable="$targetnametoken$.exe"
-        EntryPoint="SmartSchedule.App">
-        <m2:VisualElements
-            DisplayName="SmartSchedule"
-            Square150x150Logo="Assets\Logo.png"
-            Square30x30Logo="Assets\SmallLogo.png"
-            Description="SmartSchedule"
-            ForegroundText="light"
-            BackgroundColor="#464646">
-            <m2:SplashScreen Image="Assets\SplashScreen.png" />
-        </m2:VisualElements>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="SmartSchedule.App">
+      <m2:VisualElements DisplayName="SmartSchedule" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="SmartSchedule" ForegroundText="light" BackgroundColor="#227CD6" ToastCapable="true">
+        <m2:DefaultTile Wide310x150Logo="Assets/Images/SplashScreen/Splash310x150.png" DefaultSize="wide310x150Logo">
+          <m2:ShowNameOnTiles>
+            <m2:ShowOn Tile="wide310x150Logo" />
+          </m2:ShowNameOnTiles>
+        </m2:DefaultTile>
+        <m2:SplashScreen Image="Assets\Images\SplashScreen\Splash620x300.png" BackgroundColor="#227CD6" />
+      </m2:VisualElements>
     </Application>
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
+    <Capability Name="internetClientServer" />
+    <DeviceCapability Name="location" />
   </Capabilities>
 </Package>

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace SmartSchedule.Classes
 {
+
+    
+
+
     public class CityDataList
     {
         public static List<CityData> getValue;

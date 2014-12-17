@@ -13,39 +13,51 @@
     <Page.Resources>
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
         <x:String x:Key="AppName">My Application</x:String>
-        <ControlTemplate x:Key="ButtonControlTemplate1" TargetType="Button">
-            <Grid x:Name="grid" Background="Black">
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualStateGroup.Transitions>
-                            <VisualTransition GeneratedDuration="0" To="PointerOver">
-                                <Storyboard>
-                                    <ColorAnimation Duration="0:0:1" To="#FF8F2727" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="grid" d:IsOptimized="True"/>
-                                </Storyboard>
-                            </VisualTransition>
-                        </VisualStateGroup.Transitions>
-                    </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>
-                <Path x:Name="Shape_1" Data="F1M133.66,69.736C133.66,69.736 170.323,69.736 170.323,69.736 170.323,69.736 170.323,133.669 170.323,133.669 170.323,133.669 234.239,133.669 234.239,133.669 234.239,133.669 234.239,170.332 234.239,170.332 234.239,170.332 170.323,170.332 170.323,170.332 170.323,170.332 170.323,234.265 170.323,234.265 170.323,234.265 133.66,234.265 133.66,234.265 133.66,234.265 133.66,170.332 133.66,170.332 133.66,170.332 69.727,170.332 69.727,170.332 69.727,170.332 69.727,133.669 69.727,133.669 69.727,133.669 133.66,133.669 133.66,133.669 133.66,133.669 133.66,69.736 133.66,69.736z M151.991,15.742C76.857,15.742 15.733,76.866 15.733,152 15.733,227.135 76.857,288.259 151.991,288.259 227.135,288.259 288.267,227.135 288.267,152 288.267,76.866 227.135,15.742 151.991,15.742z M151.991,1.98C234.72,1.98 302.028,69.279 302.028,152 302.028,234.721 234.72,302.02 151.991,302.02 69.27,302.02 1.972,234.721 1.972,152 1.972,69.279 69.27,1.98 151.991,1.98z" Fill="White" Height="304" Canvas.Left="-2" Stretch="None" Canvas.Top="-2" Width="304"/>
-            </Grid>
-        </ControlTemplate>
-        <ControlTemplate x:Key="PlusButton" TargetType="Button">
-            <Grid x:Name="grid" Margin="0,0,-10,-14" RenderTransformOrigin="0.5,0.5" Background="Black">
-                <Grid.RenderTransform>
-                    <CompositeTransform/>
-                </Grid.RenderTransform>
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal"/>
-                        <VisualState x:Name="Pressed"/>
-                        <VisualState x:Name="Disabled"/>
-                        <VisualState x:Name="PointerOver"/>
-                    </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>
-                <Path x:Name="Shape_1" Data="F1M45.887,24.579C45.887,24.579 58.108,24.579 58.108,24.579 58.108,24.579 58.108,45.89 58.108,45.89 58.108,45.89 79.413,45.89 79.413,45.89 79.413,45.89 79.413,58.111 79.413,58.111 79.413,58.111 58.108,58.111 58.108,58.111 58.108,58.111 58.108,79.422 58.108,79.422 58.108,79.422 45.887,79.422 45.887,79.422 45.887,79.422 45.887,58.111 45.887,58.111 45.887,58.111 24.576,58.111 24.576,58.111 24.576,58.111 24.576,45.89 24.576,45.89 24.576,45.89 45.887,45.89 45.887,45.89 45.887,45.89 45.887,24.579 45.887,24.579z M51.997,6.581C26.952,6.581 6.578,26.955 6.578,52 6.578,77.045 26.952,97.42 51.997,97.42 77.045,97.42 97.422,77.045 97.422,52 97.422,26.955 77.045,6.581 51.997,6.581z M51.997,1.993C79.573,1.993 102.009,24.426 102.009,52 102.009,79.574 79.573,102.007 51.997,102.007 24.423,102.007 1.991,79.574 1.991,52 1.991,24.426 24.423,1.993 51.997,1.993z" Fill="White" Height="104" Canvas.Left="-2" Stretch="None" Canvas.Top="-2" Width="104"/>
-            </Grid>
-        </ControlTemplate>
-        <Style x:Key="ButtonPlus" TargetType="Button"/>
+        <Style x:Key="CheckButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Canvas x:Name="CheckButton" UseLayoutRounding="False" RenderTransformOrigin="0.5,0.5">
+                            <Canvas.RenderTransform>
+                                <CompositeTransform/>
+                            </Canvas.RenderTransform>
+                            <Canvas.Clip>
+                                <RectangleGeometry Rect="0,0,200,200"/>
+                            </Canvas.Clip>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="CheckButton">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.85"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="CheckButton">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.85"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled"/>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0" To="#FFDAB2B2" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="ellipse" d:IsOptimized="True"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Ellipse x:Name="ellipse" Height="100" Width="100" Fill="#FF7A7272" Opacity="0.2"/>
+                            <Path x:Name="Shape_3" Width="100" UseLayoutRounding="False" Canvas.Top="-1" Stretch="None" Canvas.Left="-1" Height="100" Fill="White" Data="M50,4.45545 C24.8866,4.45545 4.45545,24.8866 4.45545,50 C4.45545,75.1134 24.8866,95.5446 50,95.5446 C75.1134,95.5446 95.5446,75.1134 95.5446,50 C95.5446,24.8866 75.1134,4.45545 50,4.45545 z M50,0.49505 C77.2975,0.49505 99.505,22.7025 99.505,50 C99.505,77.2975 77.2975,99.505 50,99.505 C22.7025,99.505 0.49505,77.2975 0.49505,50 C0.49505,22.7025 22.7025,0.49505 50,0.49505 z"/>
+                            <Path x:Name="Shape_2" Width="61.314" UseLayoutRounding="False" Canvas.Top="20" Stretch="None" Canvas.Left="20" Height="59" Fill="White" Data="M18.1662,27.2823 C18.1662,27.2823 25.8524,42.5621 25.8524,42.5621 C25.8524,42.5621 38.3431,11.5085 58.0386,1.15686 C57.5586,8.55037 55.637,14.9582 59,22.8457 C50.3525,24.817 32.5784,46.9987 26.8138,57.8431 C18.6475,47.4915 9.03973,39.6052 2.31373,37.1399 C2.31373,37.1399 18.1662,27.2823 18.1662,27.2823 z"/>
+                        </Canvas>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
     </Page.Resources>
 
     <!--
@@ -53,12 +65,13 @@
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-    <!--
-        This grid acts as a root panel for the page that defines two rows:
-        * Row 0 contains the back button and page title
-        * Row 1 contains the rest of the page layout
-    -->
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="Assets/WallPapers/WalpaperGrey.jpg"/>
+        </Grid.Background>
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition/>
@@ -83,39 +96,48 @@
                         AutomationProperties.ItemType="Navigation Button"/>
             <TextBlock x:Name="pageTitle" Text="Dashboard" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+            <TextBox x:Name="errorBox" HorizontalAlignment="Left" Height="49" Margin="362,70,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="225" Grid.Column="1"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="608" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="672">
+        <Grid HorizontalAlignment="Left" Height="613" Margin="10,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="526">
+            <Path x:Name="Shape_1" Data="M55.3786,82.3903 C55.3786,82.3903 55.3786,549.479 55.3786,549.479 C55.3786,549.479 450.623,549.479 450.623,549.479 C450.623,549.479 450.623,82.3903 450.623,82.3903 C450.623,82.3903 55.3786,82.3903 55.3786,82.3903 z M208.442,0.500371 C208.442,0.500371 297.557,0.500371 297.557,0.500371 C297.557,0.500371 297.557,22.4892 297.557,22.4892 C297.557,22.4892 388.001,22.4892 388.001,22.4892 C388.001,22.4892 388.001,39.3703 388.001,39.3703 C388.001,39.3703 419.379,39.3703 419.379,39.3703 C419.379,39.3703 419.379,54.3637 419.379,54.3637 C419.379,54.3637 450.623,54.3637 450.623,54.3637 C450.623,54.3637 450.623,39.3703 450.623,39.3703 C450.623,39.3703 505.241,39.3703 505.241,39.3703 C505.241,39.3703 505.241,82.3903 505.241,82.3903 C505.241,82.3903 486.192,82.3903 486.192,82.3903 C486.192,82.3903 486.192,549.479 486.192,549.479 C486.192,549.479 505.241,549.479 505.241,549.479 C505.241,549.479 505.241,592.498 505.241,592.498 C505.241,592.498 450.623,592.498 450.623,592.498 C450.623,592.498 450.623,577.504 450.623,577.504 C450.623,577.504 55.3786,577.504 55.3786,577.504 C55.3786,577.504 55.3786,592.498 55.3786,592.498 C55.3786,592.498 0.759,592.498 0.759,592.498 C0.759,592.498 0.759,549.479 0.759,549.479 C0.759,549.479 19.8086,549.479 19.8086,549.479 C19.8086,549.479 19.8086,82.3903 19.8086,82.3903 C19.8086,82.3903 0.759,82.3903 0.759,82.3903 C0.759,82.3903 0.759,39.3703 0.759,39.3703 C0.759,39.3703 55.3786,39.3703 55.3786,39.3703 C55.3786,39.3703 55.3786,54.3637 55.3786,54.3637 C55.3786,54.3637 85.6171,54.3637 85.6171,54.3637 C85.6171,54.3637 85.6171,39.3703 85.6171,39.3703 C85.6171,39.3703 118.002,39.3703 118.002,39.3703 C118.002,39.3703 118.002,22.4892 118.002,22.4892 C118.002,22.4892 208.442,22.4892 208.442,22.4892 C208.442,22.4892 208.442,0.500371 208.442,0.500371 z" Fill="White" Stretch="None" Margin="10" UseLayoutRounding="False"/>
+            <ListView x:Name="listView" HorizontalAlignment="Left" Height="460" Margin="68,96,0,0" VerticalAlignment="Top" Width="390" SelectionMode="Extended" SelectionChanged="listView_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Border Height="60" Width="60" >
+                                <Image Source="/Assets/Images/EventImg.png" Stretch="UniformToFill"/>
+                            </Border>
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,10,0,0">
+                                <TextBlock Text="{Binding eventName}" FontSize="20" />
+                                <TextBlock Text="{Binding eventType}"
+                       HorizontalAlignment="Left" FontSize="16" />
+                                <TextBlock Text="{Binding cityName}" 
+                     FontSize="14"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
 
-            <Button x:Name="AddButton" Content="Button" HorizontalAlignment="Left" Height="60" Margin="295,538,0,0" Style="{StaticResource PlusButtonFinal}" VerticalAlignment="Top" Width="60" Tapped="AddButton_Tapped"/>
-            <SearchBox x:Name="CitySearchBox" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top" Width="287" Height="33" PlaceholderText="Search City" QueryChanged="CitySearchBox_QueryChanged"/>
-            <ListBox x:Name="CityListBox" HorizontalAlignment="Left" Height="92" Margin="10,248,0,0" VerticalAlignment="Top" Width="287" SelectionChanged="CityListBox_SelectionChanged"/>
-            <TextBox x:Name="EventName" HorizontalAlignment="Left" Height="26" Margin="27,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" PlaceholderText="Event Name"/>
-            <DatePicker x:Name="FromDate" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,105,0,0"/>
-            <TimePicker x:Name="FromTime" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="460,105,0,0"/>
-            <TimePicker x:Name="ToTime" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="460,162,0,0"/>
-            <DatePicker x:Name="ToDate" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,162,0,0"/>
-            <TextBox x:Name="CompleteAddress" HorizontalAlignment="Left" Height="125" Margin="364,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="276" PlaceholderText="Complete Address"/>
-            <TextBox x:Name="EventDescription" HorizontalAlignment="Left" Height="126" Margin="10,363,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="630" PlaceholderText="Evenet Description"/>
-            <TextBlock HorizontalAlignment="Left" Height="32" Margin="10,105,0,0" TextWrapping="Wrap" Text="From :" VerticalAlignment="Top" Width="70" FontSize="21.333" TextAlignment="Center"/>
-            <TextBlock HorizontalAlignment="Left" Height="32" Margin="10,162,0,0" TextWrapping="Wrap" Text="To:" VerticalAlignment="Top" Width="70" FontSize="21.333" TextAlignment="Center"/>
-            <TextBlock HorizontalAlignment="Left" Height="43" Margin="191,10,0,0" TextWrapping="Wrap" Text="CREATE NEW EVENT" VerticalAlignment="Top" Width="291" FontSize="29.333" TextAlignment="Center"/>
-            <ComboBox x:Name="EventType" HorizontalAlignment="Left" Margin="364,54,0,0" VerticalAlignment="Top" Width="276" PlaceholderText="Event Type">
-                <x:String>Appointment</x:String>
-                <x:String>Anniversary</x:String>
-                <x:String>Meeting</x:String>
-                <x:String>Function / Party</x:String>
-                <x:String>Social Gathering</x:String>
-                <x:String>Re-Union</x:String>
-                <x:String>Movie Time</x:String>
-                <x:String>Vacation</x:String>
-            </ComboBox>
-            <Button x:Name="EndButton" Content="Button" HorizontalAlignment="Left" Height="60" Margin="378,538,0,0" Style="{StaticResource EndButton}" VerticalAlignment="Top" Width="60" Tapped="EndButton_Tapped"/>
-            <Button x:Name="CheckButton" Content="Button" HorizontalAlignment="Left" Height="60" Margin="216,538,0,0" Style="{StaticResource CheckButton}" VerticalAlignment="Top" Width="60" Tapped="CheckButton_Tapped"/>
-            <Button Content="Button" HorizontalAlignment="Left" Height="60" Margin="507.5,511.5,0,0" Style="{StaticResource SampleBTBTBT}" VerticalAlignment="Top" Width="60"/>
+            </ListView>
 
         </Grid>
-        <Grid HorizontalAlignment="Right" Height="608" Grid.Row="1" VerticalAlignment="Bottom" Width="669" Margin="0,0,10,10"/>
-
-
+        <Grid HorizontalAlignment="Left" Height="608" Margin="541,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="815">
+            <Rectangle HorizontalAlignment="Left" Height="269" Margin="10,0,0,0" Stroke="White" VerticalAlignment="Top" Width="395" StrokeThickness="7"/>
+            <Rectangle HorizontalAlignment="Left" Height="138" Margin="10,460,0,0" Stroke="White" VerticalAlignment="Top" Width="452" StrokeThickness="7"/>
+            <Rectangle HorizontalAlignment="Left" Height="426" Margin="520,172,0,0" Stroke="White" VerticalAlignment="Top" Width="285" StrokeThickness="7"/>
+            <Button x:Name="ViewButton" Content="View" HorizontalAlignment="Left" Height="100" Margin="254,0,0,189" Style="{StaticResource ViewButton}" VerticalAlignment="Bottom" Width="100" Click="ViewButton_Click" Visibility="Collapsed"/>
+            <Button x:Name="DeleteButton" Content="Delete" HorizontalAlignment="Left" Height="100" Margin="60,0,0,189" Style="{StaticResource DeleteButton}" VerticalAlignment="Bottom" Width="100" Tapped="DeleteButton_Tapped" Visibility="Collapsed"/>
+            <TextBlock x:Name="EventNameBlock" HorizontalAlignment="Left" Height="42" Margin="29,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" FontSize="32">
+        		<Run Text="Select an event to view "/>
+        		<Run FontFamily="Calibri" Text="Details"/>
+            </TextBlock>
+            <TextBlock x:Name="EventTypeBlock" HorizontalAlignment="Left" Height="35" Margin="29,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" FontSize="24" FontFamily="Calibri"/>
+            <TextBlock x:Name="DateBlock" HorizontalAlignment="Left" Height="29" Margin="29,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" FontSize="22" FontFamily="Calibri"/>
+            <TextBlock x:Name="AddressBlock" HorizontalAlignment="Left" Height="95" Margin="29,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="363" FontSize="20" FontFamily="Calibri"/>
+            <TextBlock x:Name="LableTimeLeft" HorizontalAlignment="Left" Height="35" Margin="29,425,0,0" TextWrapping="Wrap" Text="Time Left" VerticalAlignment="Top" Width="109" FontSize="26.667" FontFamily="Calibri" Visibility="Collapsed"/>
+            <TextBlock x:Name="TimeLeftBlock" HorizontalAlignment="Left" Height="100" Margin="29,480,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" FontSize="48" FontFamily="Calibri"/>
+            <TextBlock x:Name="WeatherData" HorizontalAlignment="Left" Height="416" Margin="520,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" FontSize="26.667" FontFamily="Calibri" Text="WeatherData" TextAlignment="Center"/>
+            <Button x:Name="NewButton" Content="New" HorizontalAlignment="Left" Height="100" Margin="575,0,0,481" Style="{StaticResource ViewButton}" VerticalAlignment="Bottom" Width="100" Tapped="NewButton_Tapped"/>
+        </Grid>
     </Grid>
 </Page>

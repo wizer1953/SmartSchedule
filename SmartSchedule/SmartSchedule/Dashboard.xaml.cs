@@ -13,19 +13,19 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Newtonsoft.Json;
 using SmartSchedule.Classes;
+using Newtonsoft.Json;
 using Windows.Storage;
+
+// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 namespace SmartSchedule
 {
-
     public sealed partial class Dashboard : Page
     {
+        DispatcherTimer dt; string timeLeftString; EventData temp; int selectedIndex;
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
-        string lastException;
-        string selectedCity;
 
         public ObservableDictionary DefaultViewModel
         {
@@ -36,6 +36,7 @@ namespace SmartSchedule
         {
             get { return this.navigationHelper; }
         }
+
         public Dashboard()
         {
             this.InitializeComponent();
@@ -46,22 +47,74 @@ namespace SmartSchedule
             initialize();
         }
 
-        void initialize()
-        {
-            selectedCity = "";
-        }
-
-
-        
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
         }
-    
+
         private void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
         }
+        
 
+
+        void initialize()
+        {
+            dt = new DispatcherTimer();
+            dt.Interval = new TimeSpan(0, 0, 0, 1);
+            dt.Tick += dt_Tick;
+            try
+            {
+                listView.ItemsSource = EventDataList.getValue;
+            }
+            catch (Exception ex)
+            {
+                errorBox.Text = ex.Message;
+            }
+        }
+
+        void LoadEventDetails()
+        {
+            LableTimeLeft.Visibility = Visibility.Visible;
+            EventNameBlock.Text = temp.eventName;
+            EventTypeBlock.Text = temp.eventType;
+            DateBlock.Text = temp.ToDate.Date.Date.ToString();
+            AddressBlock.Text = temp.CompleteAddress;
+            LoadTimeLeft();
+            dt.Start();
+        }
+
+        void LoadTimeLeft()
+        {
+            TimeSpan x = new TimeSpan(0,0,0,0);
+            if (temp.ToDate.Date > DateTimeOffset.Now)
+            x = x + (temp.ToDate.Date - DateTimeOffset.Now);
+
+            x = x + (temp.ToTime - DateTimeOffset.Now.TimeOfDay);
+            if(x.Days < 0 || x.Hours <0 || x.Minutes<0 || x.Seconds<0)
+            {
+                timeLeftString = "EVENT COMPLETED";
+            }
+            else
+            timeLeftString = x.Days + "Days,  " + x.Hours + " : " + x.Minutes + " : " + x.Seconds;
+
+            TimeLeftBlock.Text = timeLeftString;
+        }
+
+
+
+/*******************************Events**********************************************/
         #region NavigationHelper registration
+
+        /// The methods provided in this section are simply used to allow
+        /// NavigationHelper to respond to the page's navigation methods.
+        /// 
+        /// Page specific logic should be placed in event handlers for the  
+        /// <see cref="GridCS.Common.NavigationHelper.LoadState"/>
+        /// and <see cref="GridCS.Common.NavigationHelper.SaveState"/>.
+        /// The navigation parameter is available in the LoadState method 
+        /// in addition to page state preserved during an earlier session.
+        /// 
+
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -73,95 +126,75 @@ namespace SmartSchedule
             navigationHelper.OnNavigatedFrom(e);
         }
 
+
+        void dt_Tick(object sender, object e)
+        {
+            LoadTimeLeft();
+        }
+
+        private void listView_SelectionChanged(object sender, Windows.UI.Xaml.Controls.SelectionChangedEventArgs e)
+        {
+            dt.Stop();
+
+            if (listView.SelectedIndex == -1)
+            {
+                EventNameBlock.Text = "";
+                EventTypeBlock.Text = "";
+                DateBlock.Text = "";
+                AddressBlock.Text = "";
+                TimeLeftBlock.Text = "";
+                LableTimeLeft.Visibility = Visibility.Collapsed;
+                ViewButton.Visibility = Visibility.Collapsed;
+                DeleteButton.Visibility = Visibility.Collapsed;
+                return;
+            }
+            else
+            {
+                temp = listView.SelectedItem as EventData;
+                ViewButton.Visibility = Visibility.Visible;
+                DeleteButton.Visibility = Visibility.Visible;
+                LoadEventDetails();
+            }
+        }
+
         #endregion
 
-      
-        private void cityListLoader()
+        private async void DeleteButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            CityListBox.Visibility = Visibility.Visible;
-            CityListBox.Items.Clear();
-            string querry = CitySearchBox.QueryText;
-            if (querry.Length != 0)
-            {
-                for (int i = 0; i < CityDataList.getValue.Count; i++)
-                {
-                    if (CityDataList.getValue[i].name.ToUpper().Contains(querry.ToUpper()))
-                    {
-                        CityListBox.Items.Add(CityDataList.getValue[i].name);
-                    }
-                }
-            }
-        }
-
-        private void clearform()
-        {
-            EventName.Text = "";
-            EventType.SelectedIndex = -1;
-            FromDate.Date = System.DateTimeOffset.Now;
-            ToDate.Date = System.DateTimeOffset.Now;
-            FromTime.Time = new TimeSpan(System.DateTimeOffset.Now.Ticks);
-            ToTime.Time = new TimeSpan(System.DateTimeOffset.Now.Ticks);
-            CitySearchBox.QueryText = "";
-            cityListLoader();
-            CompleteAddress.Text = "";
-            EventDescription.Text = "";
-        }
-
-        private void saveNewEvent()
-        {
-
-        }
-
-
-/***************EVENTS************************EVENTS**************EVENTS***********************/
-        private void CitySearchBox_QueryChanged(SearchBox sender, SearchBoxQueryChangedEventArgs args)
-        {
-            if(CitySearchBox.QueryText != selectedCity)
-            cityListLoader();
-        }
-
-        private void CityListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
             try
             {
-                selectedCity = CityListBox.SelectedItem.ToString();
-                CitySearchBox.QueryText = selectedCity;
+
+               selectedIndex = listView.SelectedIndex;
+               listView.SelectedIndex = -1;
+               listView.ItemsSource = null;
+               EventDataList.getValue.RemoveAt(selectedIndex);
+               listView.ItemsSource = EventDataList.getValue;
+
+                EventString.JsonEventString = JsonConvert.SerializeObject(EventDataList.getValue);
+
+                StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+                StorageFile storageFile = await storageFolder.CreateFileAsync("eventData.txt", CreationCollisionOption.ReplaceExisting);
+                await Windows.Storage.FileIO.WriteTextAsync(storageFile, EventString.JsonEventString);
+
             }
-            catch(NullReferenceException e1)
+            catch(Exception ep)
             {
-                lastException = e1.Message;
+                errorBox.Text = ep.Message;
             }
         }
 
-        private void AddButton_Tapped(object sender, TappedRoutedEventArgs e)
+        private void ViewButton_Click(object sender, RoutedEventArgs e)
         {
-            clearform();
-            CheckButton.Visibility = Visibility.Visible;
-            EndButton.Visibility = Visibility.Visible;
-            AddButton.Visibility = Visibility.Collapsed;
+           
         }
 
-        private void CheckButton_Tapped(object sender, TappedRoutedEventArgs e)
+        private void NewButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            CheckButton.Visibility = Visibility.Collapsed;
-            EndButton.Visibility = Visibility.Collapsed;
-            AddButton.Visibility = Visibility.Visible;
+            this.Frame.Navigate(typeof(AddEvent));
         }
 
-        private void EndButton_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            CheckButton.Visibility = Visibility.Collapsed;
-            EndButton.Visibility = Visibility.Collapsed;
-            AddButton.Visibility = Visibility.Visible;
-        }
-
-       
 
 
-
- 
-
-
+     
     }
 }
