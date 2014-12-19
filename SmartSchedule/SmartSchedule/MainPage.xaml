@@ -7,15 +7,33 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <Storyboard x:Name="myTranslateX" Completed="myTranslateX_Completed">
+            <DoubleAnimation x:Name="TransXAnimation"
+              Storyboard.TargetName="DynamicTransform"
+              Storyboard.TargetProperty="TranslateX"
+              From="0" To="-500" Duration="0:0:10" AutoReverse="False"/>
+        </Storyboard>
+    </Page.Resources>
+
     <Grid>
         <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="Assets/Images/rain.jpg"/>
+            <ImageBrush Stretch="Fill" ImageSource="Assets/WallPapers/BlurredWallpaper.jpg"/>
         </Grid.Background>
-        <Button Content="Add Event" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click" Margin="1171,698,0,0" Height="61" Width="164"/>
-        <Button x:Name="LoadEventData_BT" Content="DashBoard" HorizontalAlignment="Left" Height="63" Margin="1171,594,0,0" VerticalAlignment="Top" Width="164" Click="Button_Click_2" Tapped="LoadEventData_Tapped"/>
-        <Image Margin="0,0,746,468" Source="Assets/Images/SmartScheduleWide.png" Stretch="Fill"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,717,0,0" TextWrapping="Wrap" Text="Go to Dashboard and Start Planning Smartly" VerticalAlignment="Top" Height="41" Width="713" FontSize="36"/>
-        <TextBlock x:Name="ExceptionBox" HorizontalAlignment="Left" Margin="876,701,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="48" Width="219"/>
+
+        <Image x:Name="DynamicImage" Source="Assets/WallPapers/landscape2.jpg" Stretch="Fill" Style="{StaticResource StyleImage}" RenderTransformOrigin="0.5,0.5" Margin="0,0,-698,0">
+            <Image.RenderTransform>
+                <CompositeTransform x:Name="DynamicTransform" ScaleX="1" ScaleY="1" TranslateX="0" TranslateY="0"/>
+            </Image.RenderTransform>
+        </Image>
+        <Image x:Name="i1" Margin="545,77,673,599" Source="Assets/WallPapers/landscape2.jpg" Stretch="Fill" Visibility="Collapsed"/>
+        <Image x:Name="i2" Margin="776,77,442,599" Source="Assets/WallPapers/landscape1.jpg" Stretch="Fill" Visibility="Collapsed"/>
+        <Image x:Name="i4" Margin="545,212,673,464" Source="Assets/WallPapers/landscape4.jpg" Stretch="Fill" Visibility="Collapsed"/>
+        <Image x:Name="i3" Margin="1001,77,217,599" Source="Assets/WallPapers/landscape3.jpg" Stretch="Fill" Visibility="Collapsed"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,611,0,0" TextWrapping="Wrap" Text="Your Personal Smart Scheduler" VerticalAlignment="Top" Height="127" Width="401" FontSize="48"/>
+        <TextBlock x:Name="ExceptionBox" HorizontalAlignment="Left" Margin="680,665,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="84" Width="363" FontSize="36"/>
+        <Image Margin="10,10,1146,548" Source="Assets/Images/SSLOGO.png" Stretch="Fill"/>
+        <Button x:Name="DashBoardBt" Content="" HorizontalAlignment="Left" Height="149" Margin="1170,600,0,0" Style="{StaticResource DashBoardBt}" VerticalAlignment="Top" Width="149" Tapped="DashBoardBt_Tapped"/>
 
     </Grid>
 </Page>

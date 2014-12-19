@@ -85,6 +85,9 @@
             <TextBlock x:Name="ClockBox" HorizontalAlignment="Left" Height="81" Margin="1000,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="270" FontSize="72"/>
             <TextBlock x:Name="errorBlock" HorizontalAlignment="Left" Height="39" Margin="971,536,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="323" FontSize="20" TextAlignment="Center"/>
             <Rectangle HorizontalAlignment="Left" Height="81" Margin="971,56,0,0" Stroke="White" VerticalAlignment="Top" Width="323" StrokeThickness="7"/>
+            <TextBlock HorizontalAlignment="Left" Height="32" Margin="1057,24,0,0" TextWrapping="Wrap" Text="Current Time" VerticalAlignment="Top" Width="129" FontSize="21.333" TextAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Left" Height="55" Margin="1224,302,0,0" TextWrapping="Wrap" Text="Add Event" VerticalAlignment="Top" Width="70" FontSize="21.333" TextAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Left" Height="32" Margin="1224,442,0,0" TextWrapping="Wrap" Text="Cancel" VerticalAlignment="Top" Width="70" FontSize="21.333" TextAlignment="Center"/>
 
         </Grid>
     </Grid>

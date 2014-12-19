@@ -348,6 +348,52 @@
 				</Setter.Value>
 			</Setter>
 		</Style>
+		<Style x:Key="StyleImage" TargetType="Image"/>
+		<Style x:Key="DashBoardBt" TargetType="Button">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Canvas x:Name="DashBoardBt" UseLayoutRounding="False" RenderTransformOrigin="0.5,0.5">
+							<Canvas.RenderTransform>
+								<CompositeTransform/>
+							</Canvas.RenderTransform>
+							<Canvas.Clip>
+								<RectangleGeometry Rect="0,0,200,200"/>
+							</Canvas.Clip>
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal"/>
+									<VisualState x:Name="Pressed">
+										<Storyboard>
+											<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="DashBoardBt">
+												<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+												<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.85"/>
+											</DoubleAnimationUsingKeyFrames>
+											<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="DashBoardBt">
+												<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+												<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.85"/>
+											</DoubleAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Disabled"/>
+									<VisualState x:Name="PointerOver">
+										<Storyboard>
+											<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="ellipse">
+												<EasingColorKeyFrame KeyTime="0" Value="#FF645D5D"/>
+												<EasingColorKeyFrame KeyTime="0:0:0.2" Value="#FFE2ADAD"/>
+											</ColorAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<Ellipse x:Name="ellipse" Height="149" Width="149" Fill="#FF645D5D" Opacity="0.3" Canvas.Left="-2"/>
+							<Path x:Name="Shape_1" Data="M74,6.59406 C36.8322,6.59406 6.59406,36.8322 6.59406,74 C6.59406,111.168 36.8322,141.406 74,141.406 C111.168,141.406 141.406,111.168 141.406,74 C141.406,36.8322 111.168,6.59406 74,6.59406 z M74,0.732673 C114.4,0.732673 147.267,33.5997 147.267,74 C147.267,114.4 114.4,147.267 74,147.267 C33.5997,147.267 0.732673,114.4 0.732673,74 C0.732673,33.5997 33.5997,0.732673 74,0.732673 z" Fill="White" Height="148" Canvas.Left="-1" Stretch="None" Canvas.Top="-1" Width="148"/>
+							<TextBlock Canvas.Left="13" TextWrapping="Wrap" Text="DashBoard" Canvas.Top="60" FontSize="24"/>
+						</Canvas>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
 	</Application.Resources>
 
 </Application>

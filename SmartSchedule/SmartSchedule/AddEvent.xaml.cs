@@ -29,6 +29,7 @@ namespace SmartSchedule
         DispatcherTimer dt;
         string lastException;
         string selectedCity; int count = 0;
+        string selectedCityId;
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
@@ -216,6 +217,8 @@ namespace SmartSchedule
                     temp.ToDate = ToDate.Date;
                     temp.ToTime = ToTime.Time;
                     temp.cityName = CityListBox.SelectedItem.ToString();
+                    temp.cityId = selectedCityId;
+                    
                     temp.CompleteAddress = CompleteAddress.Text;
                     temp.EventDescription = EventDescription.Text;
 
@@ -264,6 +267,14 @@ namespace SmartSchedule
             {
                 selectedCity = CityListBox.SelectedItem.ToString();
                 CitySearchBox.QueryText = selectedCity;
+                for(int i = 0; i<CityDataList.getValue.Count; i++)
+                {
+                    if(CityDataList.getValue[i].name == selectedCity)
+                    {
+                        selectedCityId = CityDataList.getValue[i].id;
+                        break;
+                    }
+                }
             }
             catch (NullReferenceException e1)
             {
@@ -281,6 +292,7 @@ namespace SmartSchedule
         {
             Frame.GoBack();
         }
+
 
     
 

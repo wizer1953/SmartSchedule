@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using SmartSchedule.Classes;
 using Windows.Storage;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -23,8 +24,11 @@ namespace SmartSchedule
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
+    /// 
+
     public sealed partial class MainPage : Page
     {
+        int count = 1;
         public MainPage()
         {
             this.InitializeComponent();
@@ -40,6 +44,7 @@ namespace SmartSchedule
 
         void initialize()
         {
+            myTranslateX.Begin();
             loadCityData();
             loadEventData();
         }
@@ -47,11 +52,15 @@ namespace SmartSchedule
         // # Loading CityData into City Class static data members
          async void loadCityData()
         {
+            Debug.WriteLine("Loading JSON CityData, File = JsonCityData.JSON");
             StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/JsonCityData.txt"));
+            Debug.WriteLine("Reading File JSonCityData.json");
             Stream stream = await file.OpenStreamForReadAsync();
             StreamReader sr = new StreamReader(stream);
             string jsonCityData = sr.ReadToEnd();
+            Debug.WriteLine("Deserializing Json Data to CityDataList");
             CityDataList.getValue = JsonConvert.DeserializeObject<List<CityData>>(jsonCityData);
+
         }
 
          async void loadEventData()
@@ -64,7 +73,6 @@ namespace SmartSchedule
                  string eventDataString = await Windows.Storage.FileIO.ReadTextAsync(eventDataFile);
                  EventDataList.getValue = JsonConvert.DeserializeObject<List<EventData>>(eventDataString);
 
-                 ExceptionBox.Text = EventDataList.getValue[0].cityName;
 
              }
              catch (Exception ex)
@@ -78,20 +86,41 @@ namespace SmartSchedule
 
 /***************EVENTS************************EVENTS**************EVENTS***********************/
 
-        private void LoadEventData_Tapped(object sender, TappedRoutedEventArgs e)
+
+
+        private void myTranslateX_Completed(object sender, object e)
+        {
+            DynamicTransform.TranslateX = 0;
+            if(count == 1)
+            {
+                DynamicImage.Source = i2.Source;
+                count = 2;
+            }
+            else if(count == 2)
+            {
+                DynamicImage.Source = i3.Source;
+                count = 3;
+            }
+            else if(count == 3)
+            {
+                DynamicImage.Source = i4.Source;
+                count = 4;
+            }
+            else if(count == 4)
+            {
+                DynamicImage.Source = i1.Source;
+                count = 1;
+            }
+            myTranslateX.Begin();
+        }
+
+        private void DashBoardBt_Tapped(object sender, TappedRoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Dashboard));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(AddEvent));
-        }
+     
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            
-        }
 
 
      

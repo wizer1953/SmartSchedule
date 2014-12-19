@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SmartSchedule.Classes;
 
 namespace SmartSchedule.Classes
 {
@@ -13,8 +14,10 @@ namespace SmartSchedule.Classes
         public DateTimeOffset ToDate { get; set; }
         public TimeSpan ToTime { get; set; }
         public string cityName { get; set; }
+        public string cityId { get; set; }
         public string CompleteAddress { get; set; }
         public string EventDescription { get; set; }
+
        /*
         public string eventName;
         public string eventType;

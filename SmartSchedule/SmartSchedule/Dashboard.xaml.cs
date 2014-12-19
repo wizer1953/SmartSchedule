@@ -15,12 +15,15 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using SmartSchedule.Classes;
 using Newtonsoft.Json;
+using System.Net.Http;
 using Windows.Storage;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 namespace SmartSchedule
 {
+    
+
     public sealed partial class Dashboard : Page
     {
         DispatcherTimer dt; string timeLeftString; EventData temp; int selectedIndex;
@@ -86,8 +89,9 @@ namespace SmartSchedule
         void LoadTimeLeft()
         {
             TimeSpan x = new TimeSpan(0,0,0,0);
-            if (temp.ToDate.Date > DateTimeOffset.Now)
-            x = x + (temp.ToDate.Date - DateTimeOffset.Now);
+            if (temp.ToDate.Date > DateTimeOffset.Now.Date)
+            x = x + (temp.ToDate.Date - DateTimeOffset.Now.Date);    
+
 
             x = x + (temp.ToTime - DateTimeOffset.Now.TimeOfDay);
             if(x.Days < 0 || x.Hours <0 || x.Minutes<0 || x.Seconds<0)
@@ -100,21 +104,22 @@ namespace SmartSchedule
             TimeLeftBlock.Text = timeLeftString;
         }
 
+        async void weatherLoader()
+        {
+            HttpClient httpClient = new HttpClient();
+            HttpResponseMessage response = await httpClient.GetAsync("http://api.openweathermap.org/data/2.5/weather?id=" + temp.cityId);
+            string x = await response.Content.ReadAsStringAsync();
+            errorBox.Text = x;
+
+            RootObject obj = JsonConvert.DeserializeObject<RootObject>(x);
+
+            errorBox.Text = obj.weather[0].description;
+        }
+
 
 
 /*******************************Events**********************************************/
         #region NavigationHelper registration
-
-        /// The methods provided in this section are simply used to allow
-        /// NavigationHelper to respond to the page's navigation methods.
-        /// 
-        /// Page specific logic should be placed in event handlers for the  
-        /// <see cref="GridCS.Common.NavigationHelper.LoadState"/>
-        /// and <see cref="GridCS.Common.NavigationHelper.SaveState"/>.
-        /// The navigation parameter is available in the LoadState method 
-        /// in addition to page state preserved during an earlier session.
-        /// 
-
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -191,6 +196,16 @@ namespace SmartSchedule
         private void NewButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(AddEvent));
+        }
+
+        private void TestButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(DetailsPage));
+        }
+
+        private async void LoadWeatherBt_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
 
 
