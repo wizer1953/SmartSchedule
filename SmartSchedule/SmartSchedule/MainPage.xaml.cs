@@ -53,12 +53,16 @@ namespace SmartSchedule
          async void loadCityData()
         {
             Debug.WriteLine("Loading JSON CityData, File = JsonCityData.JSON");
-            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/JsonCityData.txt"));
+            Debug.WriteLine("Deserializing Json Data to CityDataList");
             Debug.WriteLine("Reading File JSonCityData.json");
+
+
+            StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/JsonCityData.txt"));
             Stream stream = await file.OpenStreamForReadAsync();
             StreamReader sr = new StreamReader(stream);
+          
+
             string jsonCityData = sr.ReadToEnd();
-            Debug.WriteLine("Deserializing Json Data to CityDataList");
             CityDataList.getValue = JsonConvert.DeserializeObject<List<CityData>>(jsonCityData);
 
         }
@@ -71,6 +75,8 @@ namespace SmartSchedule
                  StorageFile eventDataFile = await storageFolder.GetFileAsync("eventData.txt");
 
                  string eventDataString = await Windows.Storage.FileIO.ReadTextAsync(eventDataFile);
+
+
                  EventDataList.getValue = JsonConvert.DeserializeObject<List<EventData>>(eventDataString);
 
 
@@ -118,13 +124,6 @@ namespace SmartSchedule
         {
             this.Frame.Navigate(typeof(Dashboard));
         }
-
-     
-
-
-
-     
-
        
     }
 }

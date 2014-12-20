@@ -116,6 +116,8 @@
     <Compile Include="Classes\EventString.cs" />
     <Compile Include="Classes\FlagCounters.cs" />
     <Compile Include="Classes\NewEventData.cs" />
+    <Compile Include="Classes\StaticEventData.cs" />
+    <Compile Include="Classes\WeatherData.cs" />
     <Compile Include="Common\NavigationHelper.cs" />
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\RelayCommand.cs" />
@@ -123,8 +125,8 @@
     <Compile Include="Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DetailsPage.xaml.cs">
-      <DependentUpon>DetailsPage.xaml</DependentUpon>
+    <Compile Include="EventDetails.xaml.cs">
+      <DependentUpon>EventDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -165,6 +167,12 @@
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\WeatherWallpaper\09d.jpg" />
+    <Content Include="Assets\WeatherWallpaper\10d.jpg" />
+    <Content Include="Assets\WeatherWallpaper\11d.jpg" />
+    <Content Include="Assets\WeatherWallpaper\13d.jpg" />
+    <Content Include="Assets\WeatherWallpaper\50d.jpg" />
+    <Content Include="Assets\WeatherWallpaper\Clouds.jpg" />
     <Content Include="CheckButton_Images\Shape 1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -182,7 +190,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DetailsPage.xaml">
+    <Page Include="EventDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -195,6 +203,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\netcore45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Images\WeatherIcons\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

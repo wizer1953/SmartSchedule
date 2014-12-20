@@ -8,12 +8,14 @@
     mc:Ignorable="d">
 
     <Page.Resources>
+        
         <Storyboard x:Name="myTranslateX" Completed="myTranslateX_Completed">
             <DoubleAnimation x:Name="TransXAnimation"
               Storyboard.TargetName="DynamicTransform"
               Storyboard.TargetProperty="TranslateX"
               From="0" To="-500" Duration="0:0:10" AutoReverse="False"/>
         </Storyboard>
+        
     </Page.Resources>
 
     <Grid>

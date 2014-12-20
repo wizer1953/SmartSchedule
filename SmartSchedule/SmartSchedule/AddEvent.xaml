@@ -23,7 +23,7 @@
     -->
     <Grid>
         <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="Assets/WallPapers/WallPaperRed.jpg"/>
+            <ImageBrush Stretch="Fill" ImageSource="Assets/WallPapers/PinBoard.png"/>
         </Grid.Background>
         <Grid.ChildrenTransitions>
             <TransitionCollection>
@@ -66,7 +66,7 @@
             <TimePicker x:Name="ToTime" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="603,253,0,0" ClockIdentifier="24HourClock"/>
             <DatePicker x:Name="ToDate" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="526,116,0,0"/>
             <TextBox x:Name="CompleteAddress" HorizontalAlignment="Left" Height="188" Margin="27,387,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="332" PlaceholderText="Complete Address" FontSize="26.667"/>
-            <TextBox x:Name="EventDescription" HorizontalAlignment="Left" Height="188" Margin="467,387,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="427" PlaceholderText="Evenet Description"/>
+            <TextBox x:Name="EventDescription" HorizontalAlignment="Left" Height="188" Margin="467,387,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="427" PlaceholderText="Event Description"/>
             <TextBlock HorizontalAlignment="Left" Height="32" Margin="650,56,0,0" TextWrapping="Wrap" Text="Date" VerticalAlignment="Top" Width="70" FontSize="21.333" TextAlignment="Center"/>
             <ComboBox x:Name="EventType" HorizontalAlignment="Left" Margin="27,116,0,0" VerticalAlignment="Top" Width="332" PlaceholderText="Event Type" SelectedIndex="-1">
                 <x:String>Appointment</x:String>
